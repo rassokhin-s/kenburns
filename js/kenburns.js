@@ -195,7 +195,31 @@
          $(image).parent().addClass('stalled');
     }
 
+    /**
+     * Destroy
+     * Stops the transition interval, stops current animation
+     * and destroys all image objects
+     */
+    Plugin.prototype.destroy = function() {
+      clearInterval(this.interval);
 
+      var image = imagesObj["image"+(currentSlide)].element;
+      $(image).parent().stop(true,true).css({
+        'opacity': '',
+        'z-index': ''
+      });
+
+      $(image).stop(true,true).css({
+        '-webkit-transition' : '',
+        '-moz-transition'    : '',
+        '-webkit-transform'  : '',
+        '-moz-transform'     : ''
+      });
+
+      $(this.element).html('');
+      imagesObj = {};
+      currentSlide = 0;
+    };
 
     /* 3. Transitions and Movement
     ------------------------------------------------------------------------------------------------- */
@@ -414,8 +438,7 @@
     $.fn[pluginName] = function ( options ) {
         return this.each(function () {
             if (!$.data(this, 'plugin_' + pluginName)) {
-                $.data(this, 'plugin_' + pluginName, 
-                new Plugin( this, options ));
+                $.data(this, 'plugin_' + pluginName, new Plugin( this, options ));
             }
         });
     }
