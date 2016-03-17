@@ -219,6 +219,8 @@
       $(this.element).html('');
       imagesObj = {};
       currentSlide = 0;
+
+      $.removeData(this.element, 'plugin_' + pluginName);
     };
 
     /* 3. Transitions and Movement
