@@ -174,7 +174,7 @@
     Plugin.prototype.checkLoadProgress = function() {
         var imagesLoaded = true;
          for(i=0;i<this.maxSlides;i++){
-            if (imagesObj["image"+i].loaded == false){
+            if (!imagesObj["image"+i] || imagesObj["image"+i].loaded == false){
                 imagesLoaded = false;
             }
         }
