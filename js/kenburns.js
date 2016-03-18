@@ -32,6 +32,7 @@
             fadeSpeed:500,
             scale:1,
             ease3d:'cubic-bezier(.81, 0, .26, 1)',
+            onLoadingFirstComplete:function(){},
             onLoadingComplete:function(){},
             onSlideComplete:function(){},
             onListComplete:function(){},
@@ -144,7 +145,7 @@
         if(index == 0) {
             this.startTransition(0);
             $(this.element).find('.loader').hide();
-
+            this.options.onLoadingFirstComplete();
         }
 
         //if the next image hasnt loaded yet, but the transition has started, 
