@@ -124,6 +124,9 @@
 
         //set up the image OBJ parameters - used to track loading and initial dimensions
         img.load(function() {
+          if (!imagesObj["image"+index]) {
+            return;
+          }
         	imagesObj["image"+index].element = this;
         	imagesObj["image"+index].loaded  = true;
             imagesObj["image"+index].width = $(this).width();
